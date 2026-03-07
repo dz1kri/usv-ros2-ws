@@ -113,7 +113,7 @@ class MavrosSeanooBridge(Node):
             response = requests.post(
                 f'{self.api_base_url}/auth/login',
                 json={'email': 'seanouser@gmail.com', 'password': 'Seano2025*'},
-                timeout=10
+                timeout=30
             )
             if response.status_code == 200:
                 data = response.json()
@@ -205,7 +205,6 @@ class MavrosSeanooBridge(Node):
 
             telemetry = {
                 'vehicle_id': self.vehicle_id,
-                'timestamp': datetime.utcnow().isoformat() + 'Z',
                 'latitude': self.current_gps.latitude,
                 'longitude': self.current_gps.longitude,
                 'altitude': self.current_gps.altitude,
@@ -213,10 +212,10 @@ class MavrosSeanooBridge(Node):
                 'speed': round(speed, 2),
                 'battery_percentage': round(battery_pct, 1),
                 'status': 'active' if armed else 'standby',
-                'flight_mode': mode,
-                'gps_fix': int(self.current_gps.status.status),
+                'mode': mode,
+                'armed': armed,
+                'gps_ok': self.current_gps.status.status >= 0,
             }
-
             # Kirim via HTTP
             response = requests.post(
                 f'{self.api_base_url}/vehicle-logs/',

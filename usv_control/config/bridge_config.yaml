@@ -1,0 +1,17 @@
+# Bridge untuk thruster kiri
+- ros_topic_name: "/wamv/thrusters/left/thrust"
+  gz_topic_name: "/model/wam-v/joint/left_propeller_joint/cmd_thrust"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+
+# Bridge untuk thruster kanan
+- ros_topic_name: "/wamv/thrusters/right/thrust"
+  gz_topic_name: "/model/wam-v/joint/right_propeller_joint/cmd_thrust"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+
+# Bridge untuk pose
+- ros_topic_name: "/wamv/pose"
+  gz_topic_name: "/model/wam-v/pose"
+  ros_type_name: "geometry_msgs/msg/PoseStamped"
+  gz_type_name: "gz.msgs.Pose"

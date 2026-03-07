@@ -1,0 +1,28 @@
+# Bridge Gazebo <-> ROS2 untuk WAM-V
+
+# Thrust commands (dari ROS2 ke Gazebo)
+- ros_topic_name: "/wamv/left_thrust"
+  gz_topic_name: "/model/wam-v/joint/left_propeller_joint/cmd_thrust"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+- ros_topic_name: "/wamv/right_thrust"
+  gz_topic_name: "/model/wam-v/joint/right_propeller_joint/cmd_thrust"
+  ros_type_name: "std_msgs/msg/Float64"
+  gz_type_name: "gz.msgs.Double"
+  direction: ROS_TO_GZ
+
+# Pose feedback (dari Gazebo ke ROS2)
+- ros_topic_name: "/wamv/pose"
+  gz_topic_name: "/world/waves/dynamic_pose/info"
+  ros_type_name: "tf2_msgs/msg/TFMessage"
+  gz_type_name: "gz.msgs.Pose_V"
+  direction: GZ_TO_ROS
+
+# IMU sensor
+- ros_topic_name: "/wamv/imu"
+  gz_topic_name: "/world/waves/model/wam-v/link/lmu_link/sensor/lmu_sensor/imu"
+  ros_type_name: "sensor_msgs/msg/Imu"
+  gz_type_name: "gz.msgs.IMU"
+  direction: GZ_TO_ROS
